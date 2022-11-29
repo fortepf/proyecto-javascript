@@ -1,30 +1,33 @@
-class personaje {
-    constructor(nombre, vida, mana, damage, pocion) {
-    this.name = nombre;
-    this.health = vida;
-    this.mana = mana;
-    this.damage = damage;
-    this.pocion = pocion;
-    }
-    usarCurar () {
-        if (this.pocion === true) {
-            return "Puedes usar una poción curativa"
-        } if (this.pocion === false) {
-            return "No tienes ninguna poción curativa"
-        }
-    }
+//paso 1
+const usuario = "feli@"
+const contrasenia = 123
+//paso 1.A
+let nombre = prompt("Ingrese su nombre")
+let usuarioIngresado = prompt(`Ingrese nombre de usuario`)
+let contraseniaIngresada = prompt(`Ingrese su contraseña`)
+
+
+if (usuario != usuarioIngresado && contrasenia != contraseniaIngresada)
+        alert("Datos incorrectos, verificar.") 
+else
+    if (usuario != usuarioIngresado)
+            alert("Usuario incorrecto")
+    else
+        if (contrasenia != contraseniaIngresada)
+            alert("Contraseña incorrecta")
+        else 
+        alert(`Bienvenido ${nombre}`)
+
+
+let tieneArroba
+let i = 0
+while(i < usuario.length && tieneArroba) {
+    if (i === "@") 
+        tieneArroba = true
+    i++
 }
 
-let berserker = new personaje("Berserker", 700, 300, 50, false)
-let sorcerer = new personaje("Sorcerer", 580, 800, 65, true)
-let gunslinger = new personaje("Gunslinger", 400, 500, 90, true)
-
-
-console.table(berserker)
-console.table(sorcerer)
-console.table(gunslinger)
-
-console.log(berserker.usarCurar())
-console.log(sorcerer.usarCurar())
-console.log(gunslinger.usarCurar())
-
+if (tieneArroba === false)
+    prompt("Ingrese nuevo email")
+    else
+    alert("Tiene arroba")

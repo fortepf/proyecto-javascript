@@ -1,7 +1,7 @@
-//paso 1
+
 const usuario = "feli@"
 const contrasenia = 123
-//paso 1.A
+
 let nombre = prompt("Ingrese su nombre")
 let usuarioIngresado = prompt(`Ingrese nombre de usuario`)
 let contraseniaIngresada = prompt(`Ingrese su contraseña`)

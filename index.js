@@ -193,14 +193,13 @@ const videoJuegosDescendente = [...videoJuegos].sort((a, b) => {
 
 // console.log(videoJuegosDescendente)
 
+// MOSTRAR OFERTAS //
 
-// A través de un confirm, pregúntele al usuario si quiere ver las ofertas de la tienda. En el caso de que si, entonces con filter, filtre el array y que muestre en consola cada una de las ofertas.
 
-function mostrarOfertas () {
-    confirm("Quieres ver las ofertas de la tienda?") 
-    }
+const listaDeOfertas = videoJuegos.filter((producto) => producto.oferta) 
 
-mostrarOfertas()
+
+// console.log(listaDeOfertas)
 
 
 // BUSCAR PRODUCTO DESEADO //

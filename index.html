@@ -1,18 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="#">
     <title>PreEntrega 2 - Coderhouse</title>
 </head>
+
 <body>
 
+    <nav>
+        <h1>Lista de clientes</h1>
+        <button id="logout">Cerrar sesión</button>
+    </nav>
+
+    <main>
+        <div class="container-login">
+
+            <h2>Inicio de sesión</h2>
+
+            <form id="login" action="" method="post">
+
+                <label>
+                    <input type="text" name="user" id="input-user" placeholder="Usuario">
+                </label>
+
+                <label>
+                    <input type="password" name="pass" id="input-pass" placeholder="Contraseña">
+                </label>
+
+                <label>
+                    <input type="submit" value="Iniciar sesión">
+                </label>
+
+                <p id="logint">
+                    El usuario o la contraseña son incorrectos
+                </p>
+
+            </form>
+        </div>
+    </main>
+
+    <section id="container-msg">
+        <h2 id="msg">Hola! Bienvenido</h2>
+    </section>
 
 
 
 
     <script src="index.js"></script>
 </body>
+
 </html>

@@ -7,15 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="#">
-    <title>PreEntrega 2 - Coderhouse</title>
+    <title>FP GAMES - Inicio</title>
 </head>
 
-<body>
+<body class="modo-claro">
 
-    <nav>
-        <h1>Lista de clientes</h1>
-        <button id="logout">Cerrar sesión</button>
-    </nav>
+    <header>
+        <div>
+            <nav>
+                <h1><a href="index.html">FP GAMES</a></h1>
+                <button id="claro-oscuro">Modo oscuro</button>
+                
+                <div class="navbar">
+                    <ul>
+                        <li>
+                            <a href="index.html">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="./pages/productos.html">Productos</a>
+                        </li>
+                        <li>
+                            <a href="./pages/carrito.html">Carrito</a>
+                        </li>
+                        <li>
+                            <a href="./pages/contacto.html">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+                <button id="logout">Cerrar sesión</button>
+            </nav>
+        </div>
+    </header>
+
+
 
     <main>
         <div class="container-login">
@@ -33,23 +57,24 @@
                 </label>
 
                 <label>
-                    <input type="submit" value="Iniciar sesión">
+                    <input type="submit" id="btn-iniciar" value="Iniciar sesión">
                 </label>
 
-                <p id="logint">
+                <p id="loginFail">
                     El usuario o la contraseña son incorrectos
                 </p>
 
             </form>
         </div>
+
     </main>
+
 
     <section id="container-msg">
         <h2 id="msg">Hola! Bienvenido</h2>
     </section>
 
-
-
+    
 
     <script src="index.js"></script>
 </body>

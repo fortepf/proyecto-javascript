@@ -220,31 +220,32 @@
 
                         // PreEntrega 3 // 
 
-const formLogin = document.querySelector("#login")
+const loginUsuario = document.querySelector("#login")
 const inputUser = document.querySelector("#input-user")
 const inputPass = document.querySelector("#input-pass")
-const loginIncorrecto = document.querySelector("#logint")
+const loginIncorrecto = document.querySelector("#loginFail")
 const contenedorForm = document.querySelector(".container-login")
 const logout = document.querySelector("#logout")
 const mensajeLogin = document.querySelector("#msg")
+const contenedorJuegos = document.querySelector("#section-juegos")
 
 const datosUsuario = {
     user: "felipe",
-    password: "felo1234"
+    password: "123"
 }
 
-const subirAlLs = ( clave, valor ) => {
+const subirALocalS = ( clave, valor ) => {
     localStorage.setItem(clave, JSON.stringify(valor))
 }
 
-const obtenerDelLs = ( clave ) => {
+const extraerDeLocalS = ( clave ) => {
     return JSON.parse(localStorage.getItem(clave))
 }
 
-formLogin.onsubmit = ( event ) => {
+loginUsuario.onsubmit = ( event ) => {
     event.preventDefault()
     if ( inputUser.value === datosUsuario.user && inputPass.value === datosUsuario.password ) {
-        subirAlLs("login", true)
+        subirALocalS("login", true)
         contenedorForm.style.display = "none"  
         logout.style.display = "block"
         mensajeLogin.style.display = "block"             
@@ -270,7 +271,7 @@ function validarLogin ( clave ) {
     }
 }
 
-validarLogin(obtenerDelLs("login"))
+validarLogin(extraerDeLocalS("login"))
 
 
 // evento que desloguea a mi usuario
@@ -278,6 +279,32 @@ validarLogin(obtenerDelLs("login"))
 logout.onclick = () => {
     localStorage.removeItem( "login" )
     console.log("me hacen click")
-    validarLogin(obtenerDelLs("login"))
-    formLogin.reset()
+    validarLogin(extraerDeLocalS("login"))
+    loginUsuario.reset()
 }
+
+// modo claro y modo oscuro
+
+const botonModos = document.querySelector("#claro-oscuro")
+const body = document.querySelector(".modo-claro")
+
+botonModos.onclick = () => {
+    body.classList.toggle("modo-oscuro")
+    subirALocalS("modoOscuro", true)
+    if ( body.className === "modo-claro modo-oscuro"){
+        botonModos.textContent = "Modo claro"
+
+    } else {
+        botonModos.textContent = "Modo oscuro"
+    }
+}
+
+function mantenerModoOscuro(key) {
+    if (key == true) {
+        body.classList.toggle("modo-oscuro")
+    }else {
+
+    }
+}
+
+mantenerModoOscuro(extraerDeLocalS("modoOscuro"))

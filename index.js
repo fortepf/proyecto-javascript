@@ -1,310 +1,203 @@
-                        // PreEntrega 1 //
+///////////////////////////////////////////////////////////////////////////////////
+/* --------------------------  Selectors   --------------------------------------*/
+//////////////////////////////////////////////////////////////////////////////////
+const carrito = document.querySelector("#carrito")
+const contenedorCarrito = document.querySelector("#lista-carrito tbody")
+const listaProductos = document.querySelector("#lista-productos")
+const vaciarCarrito = document.querySelector("#vaciar-carrito")
 
-// const usuario = "feli@"
-// const contrasenia = 123
+let articulosCarrito = []
 
-// let nombre = prompt("Ingrese su nombre")
-// let usuarioIngresado = prompt(`Ingrese nombre de usuario`)
-// let contraseniaIngresada = prompt(`Ingrese su contraseña`)
+let dataProductos
 
+////////////////////////////////////////////////////////////////////////////////////
+/* ---------------------------- Listeners ----------------------------------------*/
+////////////////////////////////////////////////////////////////////////////////////
+document.addEventListener("DOMContentLoaded", () => {
+	articulosCarrito = JSON.parse(localStorage.getItem("carrito")) || []
+	insertarCarritoHTML()
 
-// if (usuario != usuarioIngresado && contrasenia != contraseniaIngresada)
-//         alert("Datos incorrectos, verificar.") 
-// else
-//     if (usuario != usuarioIngresado)
-//             alert("Usuario incorrecto")
-//     else
-//         if (contrasenia != contraseniaIngresada)
-//             alert("Contraseña incorrecta")
-//         else 
-//         alert(`Bienvenido ${nombre}`)
+/*--------------   Llamada a BD local con Fetch - Async Function   ---------------*/
+	cargarBd();
 
+});
 
-// let tieneArroba
-// let i = 0
-// while(i < usuario.length && tieneArroba) {
-//     if (i === "@") 
-//         tieneArroba = true
-//     i++
-// }
+listaProductos.addEventListener("click", agregarProducto)
 
-// if (tieneArroba === false)
-//     prompt("Ingrese nuevo email")
-//     else
-//     alert("Tiene arroba")
+$("#carrito").click(carrito, quitarProducto)
 
-//
+$("#vaciar-carrito").click(vaciarCarrito, borrarCarrito)
 
 
-                        // PreEntrega 2 // 
-
-// const videoJuegos = [
-//     {
-//         id: 11,
-//         nombre: "God of War",
-//         precio: 59.99,
-//         descripción: "Kratos ha dejado atrás su venganza contra los dioses del Olimpo y vive ahora como un hombre en los dominios de los dioses y monstruos nórdicos. En este mundo cruel e implacable debe luchar para sobrevivir… y enseñar a su hijo a hacerlo también.",
-//         categoría: "Acción/Aventura",
-//         oferta: false,
-//     },
-//     {
-//         id: 22,
-//         nombre: "New World",
-//         precio: 17.50,
-//         descripción: "Explora un emocionante MMO de mundo abierto repleto de peligros y oportunidades en el que forjarás un nuevo destino como un aventurero que naufraga en las costas de la isla sobrenatural de Aetérnum. Infinitas oportunidades para luchar, recolectar recursos y forjar equipo te esperan entre la naturaleza salvaje y las ruinas de la isla.",
-//         categoría: "MMORPG/Mundo Abierto",
-//         oferta: true,
-//     },
-//     {
-//         id: 33,
-//         nombre: "Red Dead Redemption 2",
-//         precio: 30.00,
-//         descripción: "Arthur Morgan y la banda de Van der Linde son forajidos en busca y captura. Mientras los agentes federales y los mejores cazarrecompensas de la nación les pisan los talones, la banda deberá abrirse camino por el abrupto territorio del corazón de América y sobrevivir a base de robos y peleas.",
-//         categoría: "Mundo Abierto/Vaqueros",
-//         oferta: true,
-//     },
-//     {
-//         id: 44,
-//         nombre: "Hunt: Showdown",
-//         precio: 20.00,
-//         descripción: "Corre el año 1895, y eres un Cazador con la misión de eliminar a los salvajes monstruos de pesadilla que han infestado el Pantano de Luisiana. Juega en solitario o en equipos de dos o tres, mientras buscas pistas que te ayuden a rastrear a tu objetivo y compite con otros Cazadores que buscan la misma recompensa.",
-//         categoría: "Mundo Abierto/Táctico",
-//         oferta: true,
-//     },
-//     {
-//         id: 55,
-//         nombre: "Dead by Daylight",
-//         precio: 15.99,
-//         descripción: "Dead by Daylight es un juego de horror de multijugador (4 contra 1) en el que un jugador representa el rol del asesino despiadado y los 4 restantes juegan como supervivientes que intentan escapar de él para evitar ser capturados, torturados y asesinados.",
-//         categoría: "Supervivencia/Terror Multijugador",
-//         oferta: false,
-//     },
-//     {
-//         id: 66,
-//         nombre: "Counter Strike: Global Offensive",
-//         precio: 12.50,
-//         descripción: "Counter-Strike: Global Offensive (CS:GO) amplía el juego de acción por equipos del que fue pionero cuando salió hace más de 20 años.",
-//         categoría: "FPS",
-//         oferta: false,
-//     },
-//     {
-//         id: 77,
-//         nombre: "FIFA 23",
-//         precio: 59.99,
-//         descripción: "EA SPORTS™ FIFA 23 lleva el juego del mundo al campo, con la tecnología HyperMotion2 que ofrece una experiencia de juego aún más realista, tanto la FIFA World Cup™ masculina como la femenina que llegará al juego más adelante durante la temporada con actualizaciones tras el lanzamiento",
-//         categoría: "Deportes/Fútbol",
-//         oferta: false,
-//     },
-//     {
-//         id: 88,
-//         nombre: "A Way Out",
-//         precio: 30.00,
-//         descripción: "Una aventura exclusivamente cooperativa en la que te metes en la piel de uno de los dos reclusos protagonistas en su intrépida huida de la cárcel",
-//         categoría: "Cooperativo",
-//         oferta: false,
-//     },
-//     {
-//         id: 99,
-//         nombre: "It Takes Two",
-//         precio: 25.00,
-//         descripción: "descubre una conmovedora y emotiva historia sobre las dificultades de llevarse bien. Ayuda a Cody y May a superar sus diferencias.",
-//         categoría: "Cooperativo",
-//         oferta: true,
-//     },
-//     {
-//         id: 100,
-//         nombre: "Sea of Thieves",
-//         precio: 15.00,
-//         descripción: "Sea of Thieves ofrece la experiencia de piratas definitiva, desde la navegación y el combate hasta la exploración y el saqueo: todo para disfrutar de la vida pirata y convertirte en leyenda. No hay funciones establecidas, tienes total libertad para enfrentarte al mundo y a los demás jugadores como desees.",
-//         categoría: "Mundo Abierto/Piratas",
-//         oferta: false,
-//     },
-//     {
-//         id: 110,
-//         nombre: "Resident Evil Village",
-//         precio: 40.00,
-//         descripción: "Ambientada unos años después de los escalofriantes sucesos del aclamado Resident Evil 7: Biohazard, esta flamante nueva historia arranca con Ethan Winters y su esposa Mia viviendo plácidamente en un nuevo lugar, lejos de pesadillas pasadas.",
-//         categoría: "Supervivencia/Terror",
-//         oferta: true,
-//     },
-//     {
-//         id: 120,
-//         nombre: "Anno 1800",
-//         precio: 45.00,
-//         descripción: "Te damos la bienvenida al comienzo de la Era Industrial. El camino que elijas determinará el futuro de tu mundo. ¿Innovarás o explotarás al pueblo? ¿Conquistarás o liberarás a los oprimidos? El mundo te recordará, pero la forma en que lo haga solo depende de ti.",
-//         categoría: "Estrategia",
-//         oferta: false,
-//     },
-//     {
-//         id: 130,
-//         nombre: "Cities: Skylines",
-//         precio: 15.00,
-//         descripción: "Cities: Skylines presenta un enfoque moderno para el clásico simulador urbano. Introduce nuevos elementos a la mecánica de juego para plasmar la emoción y las complicaciones de mantener una ciudad de verdad, ampliando al mismo tiempo algunos de los temas ya conocidos de la experiencia del desarrollo urbanístico.",
-//         categoría: "Construcción de ciudades",
-//         oferta: true,
-//     },
-//     {
-//         id: 140,
-//         nombre: "Call of Duty: Modern Warfare II",
-//         precio: 70.00,
-//         descripción: "En Call of Duty®: Modern Warfare® II, los jugadores se verán inmersos en un conflicto a escala global sin precedentes que incluye el regreso de Operadores icónicos de la fuerza operativa 141.",
-//         categoría: "FPS",
-//         oferta: false,
-//     },
-//     {
-//         id: 150,
-//         nombre: "Warhammer 40,000: Darktide",
-//         precio: 20.00,
-//         descripción: "Recupera Tertium de las hordas de enemigos sanguinarios en este despiadado juego de disparos y acción salvaje. Warhammer 40,000: Darktide es la nueva experiencia cooperativa del galardonado equipo creador de la saga Vermintide.",
-//         categoría: "Aventura",
-//         oferta: true,
-//     }
-// ]
-
-// APLICO DESCUENTO A PRODUCTOS //
-
-// const descuento = JSON.parse(JSON.stringify(videoJuegos.map(producto => {
-//     return producto
-// })))
-
-// descuento.forEach(producto => {
-//     if(producto.oferta === true) {
-//         producto.precio = producto.precio * 0.75
-//     }
-// })
-
-// console.log(descuento)
 
 
-// ORDEN MANERA ASCENDENTE //
+/////////////////////////////////////////////////////////////////////////////////////////
+/* ---------------------------------   Funciones   ------------------------------------*/
+/////////////////////////////////////////////////////////////////////////////////////////
 
-// const videoJuegosAscendente = [...videoJuegos].sort((a, b) => {
-//     return a.id - b.id
-// })
-
-// console.log(videoJuegosAscendente)
-
-
-// ORDEN MANERA DESCENDENTE //
-
-// const videoJuegosDescendente = [...videoJuegos].sort((a, b) => {
-//     return b.id - a.id
-// })
-
-// console.log(videoJuegosDescendente)
-
-// MOSTRAR OFERTAS //
-
-
-// const listaDeOfertas = videoJuegos.filter((producto) => producto.oferta) 
-
-
-// console.log(listaDeOfertas)
-
-
-// BUSCAR PRODUCTO DESEADO //
-
-// function buscarProducto () {
-//     let buscador = prompt("Ingrese nombre de producto que desea buscar").toUpperCase()
-
-//     let productoBuscado = videoJuegos.find (producto => producto.nombre.toUpperCase() === buscador)
-//         if (productoBuscado === undefined) {
-//             console.log("El producto que ingresó no se encuentra disponible")
-//         } else {
-//             console.log(productoBuscado)
-//         }
-// }
-
-// buscarProducto()
-
-
-                        // PreEntrega 3 // 
-
-const loginUsuario = document.querySelector("#login")
-const inputUser = document.querySelector("#input-user")
-const inputPass = document.querySelector("#input-pass")
-const loginIncorrecto = document.querySelector("#loginFail")
-const contenedorForm = document.querySelector(".container-login")
-const logout = document.querySelector("#logout")
-const mensajeLogin = document.querySelector("#msg")
-const contenedorJuegos = document.querySelector("#section-juegos")
-
-const datosUsuario = {
-    user: "felipe",
-    password: "123"
+/* -------------- llamada a BD local con Fetch - async Function  ----------------------*/
+async function consultarBd() {
+	const resultado = await fetch("productos.json")
+	let datos = await resultado.json()
+	dataProductos = datos;
 }
 
-const subirALocalS = ( clave, valor ) => {
-    localStorage.setItem(clave, JSON.stringify(valor))
-}
-
-const extraerDeLocalS = ( clave ) => {
-    return JSON.parse(localStorage.getItem(clave))
-}
-
-loginUsuario.onsubmit = ( event ) => {
-    event.preventDefault()
-    if ( inputUser.value === datosUsuario.user && inputPass.value === datosUsuario.password ) {
-        subirALocalS("login", true)
-        contenedorForm.style.display = "none"  
-        logout.style.display = "block"
-        mensajeLogin.style.display = "block"             
-    } else {        
-        loginIncorrecto.style.display = "block"
-        inputPass.style.border = "1px solid red"
-        inputUser.style.border = "1px solid red"
-    }
+function cargarBd() {
+	consultarBd()
 }
 
 
-// valida si existe un token en el localStorage
+function cargarListaProductos(productos) {
+	productos.forEach((producto, index) => {
+		const { nombre, imagen, precio, id, } = producto
 
-function validarLogin ( clave ) {
-    if ( clave !== true ) {
-        contenedorForm.style.display = "flex"
-        logout.style.display = "none"  
-        mensajeLogin.style.display = "none"     
-    } else {
-        contenedorForm.style.display = "none"
-        logout.style.display = "block"
-        mensajeLogin.style.display = "block"       
-    }
+		const divCard = document.createElement("div");
+		divCard.classList.add("col-12", "col-md-3", "py-4");
+		divCard.innerHTML = `
+			<div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                <img src="${imagen}" class="card-img-top" alt="Birra image">
+                <div class="card-body">
+                <h4 class="card-title text-justify text-center blanco">${nombre}</h4>
+                <p class="precio blanco"> $ <span>${precio}</span></p>
+                <a href="#" class="btn btn-outline-light agregar-carrito" data-id="${id}">Agregar  <i class="bi bi-cart-plus"></i></a>
+                </div>
+            </div>
+		`;
+		if (index % 4 === 0) {
+			const row = document.createElement("div")
+			row.classList.add("row")
+
+			listaProductos.appendChild(row)
+			row.appendChild(divCard)
+		} else {
+			const row = document.querySelector("#lista-productos .row:last-child")
+			row.appendChild(divCard)
+		}
+	});
 }
 
-validarLogin(extraerDeLocalS("login"))
+function filtrarProductos(e) {
+	e.preventDefault()
 
+	const busqueda = $("#buscador").val()
 
-// evento que desloguea a mi usuario
+	const resultado = dataProductos.filter((producto) =>
+		producto.nombre.toLocaleLowerCase().includes(busqueda.toLocaleLowerCase())
+	);
 
-logout.onclick = () => {
-    localStorage.removeItem( "login" )
-    console.log("me hacen click")
-    validarLogin(extraerDeLocalS("login"))
-    loginUsuario.reset()
+	limpiarProductos()
+	cargarListaProductos(resultado)
 }
 
-// modo claro y modo oscuro
+function agregarProducto(e) {
+	e.preventDefault()
 
-const botonModos = document.querySelector("#claro-oscuro")
-const body = document.querySelector(".modo-claro")
-
-botonModos.onclick = () => {
-    body.classList.toggle("modo-oscuro")
-    subirALocalS("modoOscuro", true)
-    if ( body.className === "modo-claro modo-oscuro"){
-        botonModos.textContent = "Modo claro"
-
-    } else {
-        botonModos.textContent = "Modo oscuro"
-    }
+	if (e.target.classList.contains("agregar-carrito")) {
+		const productoSeleccionado = e.target.parentElement.parentElement;
+		obtenerDatos(productoSeleccionado);
+	}
 }
 
-function mantenerModoOscuro(key) {
-    if (key == true) {
-        body.classList.toggle("modo-oscuro")
-    }else {
-
-    }
+function borrarCarrito() {
+	limpiarCarrito()
+	articulosCarrito = []
+	guardarStorage()
 }
 
-mantenerModoOscuro(extraerDeLocalS("modoOscuro"))
+function quitarProducto(e) {
+	e.preventDefault();
+
+	if (e.target.classList.contains(`borrar-producto`)) {
+		swal({
+			icon: "error",
+			title: "El producto fue quitado",
+			button: false,
+			timer: 1700,
+		});
+		const productoId = e.target.getAttribute("data-id")
+		articulosCarrito = articulosCarrito.filter((producto) => producto.id != productoId)
+		insertarCarritoHTML()
+		guardarStorage()
+	}
+}
+
+function obtenerDatos(producto) {
+	const productoAgregado = {
+		nombre: producto.querySelector("h4").textContent,
+		precio: producto.querySelector(".precio span").textContent,
+		id: producto.querySelector("a").getAttribute("data-id"),
+		cantidad: 1,
+	}
+	function comprobar() {
+		swal({
+			icon: "success",
+			title: "El producto fue agregado al carrito",
+			button: true,
+			timer: 1500,
+		});
+		const existe = articulosCarrito.some((producto) => producto.id == productoAgregado.id);
+		if (existe) {
+			/* Producto ya existente */
+			const productos = articulosCarrito.map((producto) => {
+				if (producto.id === productoAgregado.id) {
+					producto.cantidad++
+					return producto
+				} else{
+					return producto;
+				}
+			});
+			articulosCarrito = [...productos]
+		} else {
+			/* Agrego el producto al carrito */
+			articulosCarrito.push(productoAgregado)
+		}
+	}
+	comprobar()
+	insertarCarritoHTML()
+	guardarStorage()
+}
+
+function guardarStorage() {
+	localStorage.setItem("carrito", JSON.stringify(articulosCarrito))
+}
+
+function insertarCarritoHTML() {
+	/* Borra el contenido del carrito */
+	limpiarCarrito()
+
+	/* Inserta los productos del carrito en el HTML */
+	articulosCarrito.forEach((producto) => {
+		
+		const { nombre, precio, cantidad, id } = producto
+
+		const row = document.createElement("tr")
+		row.innerHTML = `
+			<td>
+				${nombre}
+			</td>
+			<td>
+				${precio}
+			</td>
+			<td>
+				${cantidad}
+			</td>
+			<td>
+				<a href="#" class="" > <i class="bi bi-trash borrar-producto" data-id="${id}"></i> </a>
+			</td>
+		`
+
+		contenedorCarrito.appendChild(row)
+	});
+}
+
+function limpiarCarrito() {
+	while (contenedorCarrito.firstChild) {
+		contenedorCarrito.removeChild(contenedorCarrito.firstChild)
+	}
+}
+
+function limpiarProductos() {
+	while (listaProductos.firstChild) {
+		listaProductos.removeChild(listaProductos.firstChild)
+	}
+}

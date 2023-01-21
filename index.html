@@ -1,81 +1,401 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="#">
-    <title>FP GAMES - Inicio</title>
+    <title>FP GAMES - Página Principal</title>
+    <link rel="shortcut icon" href="./assets/img/favicon.ico">
 </head>
 
-<body class="modo-claro">
-
+<body>
     <header>
-        <div>
-            <nav>
-                <h1><a href="index.html">FP GAMES</a></h1>
-                <button id="claro-oscuro">Modo oscuro</button>
-                
-                <div class="navbar">
-                    <ul>
-                        <li>
-                            <a href="index.html">Inicio</a>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand p-lg-2 fs-lg-1" href="./index.html">FP GAMES</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Inicio</a>
                         </li>
-                        <li>
-                            <a href="./pages/productos.html">Productos</a>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#lista-productos">Juegos</a>
                         </li>
-                        <li>
-                            <a href="./pages/carrito.html">Carrito</a>
+                        <li class="nav-item dropdown">
+
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">Contacto</a>
                         </li>
-                        <li>
-                            <a href="./pages/contacto.html">Contacto</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="true" aria-haspopup="true">
+                                <i class="bi bi-cart"></i>
+                            </a>
+                            <ul class="dropdown-menu justify-content-center" aria-labelledby="navbarDropdown" id="carrito">
+                                <li>
+                                    <table class="table text-center px-3" id="lista-carrito">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Precio</th>
+                                                <th scope="col">Cantidad</th>
+                                                <th scope="col">Eliminar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!--Aca se agregan los items desde Js-->
+                                        </tbody>
+                                    </table>
+                                </li>
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-center" href="#" id="vaciar-carrito"><i
+                                            class="bi bi-cart-x"></i> Vaciar Carrito </a>
+                                </li>
+                                <li><a class="dropdown-item text-center" href="pagos.html" id="pagar"
+                                        data-toggle="modal" data-target="#exampleModal"><i class="bi bi-cash"></i> Pagar
+                                    </a></li>
+                            </ul>
                         </li>
                     </ul>
+
                 </div>
-                <button id="logout">Cerrar sesión</button>
-            </nav>
-        </div>
+        </nav>
     </header>
 
-
-
     <main>
-        <div class="container-login">
-
-            <h2>Inicio de sesión</h2>
-
-            <form id="login" action="" method="post">
-
-                <label>
-                    <input type="text" name="user" id="input-user" placeholder="Usuario">
-                </label>
-
-                <label>
-                    <input type="password" name="pass" id="input-pass" placeholder="Contraseña">
-                </label>
-
-                <label>
-                    <input type="submit" id="btn-iniciar" value="Iniciar sesión">
-                </label>
-
-                <p id="loginFail">
-                    El usuario o la contraseña son incorrectos
-                </p>
-
-            </form>
+        <div class="container text-center">
+            <div class="titulo-fp">
+                <div class="text-center">
+                    <h1>FP GAMES</h1>
+                </div>
+                <div class="text-center">
+                    <h4>Bienvenido! vendemos juegos al mejor precio!</h4>
+                </div>
+            </div>
         </div>
 
+        <div class="container my-5 g-1" id="lista-productos">
+
+            <div class="row justify-content-around">
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/godofwar.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">God of War</h4>
+                        <p class="card-text text-justify blanco">
+                            Corre el año 1895, y eres un Cazador con la misión de eliminar a los salvajes monstruos de
+                            pesadilla que han infestado el Pantano de Luisiana. Juega en solitario o en equipos de dos o
+                            tres, mientras buscas pistas que te ayuden a rastrear a tu objetivo y compite con otros
+                            Cazadores que buscan la misma recompensa.
+                        </p>
+                        <p class="precio blanco text-center fs-4"> $ <span>59.99</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="11">Agregar<i class="bi bi-cart-plus"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/newworld.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">New World</h4>
+                        <p class="card-text text-justify blanco">
+                            Explora un emocionante MMO de mundo abierto repleto de peligros y oportunidades en el que
+                            forjarás un nuevo destino como un aventurero que naufraga en las costas de la isla
+                            sobrenatural
+                            de Aetérnum. Infinitas oportunidades para luchar, recolectar recursos y forjar equipo te
+                            esperan
+                            entre la naturaleza salvaje y las ruinas de la isla.
+                        <p class="precio blanco text-center fs-4"> $ <span>17.50</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="22">Agregar<i class="bi bi-cart-plus"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/reddead.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">Red Dead Redemption 2</h4>
+                        <p class="card-text text-justify blanco">
+                            Arthur Morgan y la banda de Van der Linde son forajidos en busca y captura. Mientras los
+                            agentes
+                            federales y los mejores cazarrecompensas de la nación les pisan los talones, la banda deberá
+                            abrirse camino por el abrupto territorio del corazón de América y sobrevivir a base de robos
+                            y
+                            peleas.</p>
+                        <p class="precio blanco text-center fs-4"> $ <span>30.00</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="33">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/huntshow.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">Hunt: Showdown</h4>
+                        <p class="card-text text-justify blanco">
+                            Corre el año 1895, y eres un Cazador con la misión de eliminar a los salvajes monstruos de
+                            pesadilla que han infestado el Pantano de Luisiana. Juega en solitario o en equipos de dos o
+                            tres, mientras buscas pistas que te ayuden a rastrear a tu objetivo y compite con otros
+                            Cazadores que buscan la misma recompensa.</p>
+                        <p class="precio blanco text-center fs-4"> $ <span>20.00</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="44">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/deadbyday.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">Dead By Daylight</h4>
+                        <p class="card-text text-justify blanco">
+                            Dead by Daylight es un juego de horror de multijugador (4 contra 1) en el que un jugador
+                            representa el rol del asesino despiadado y los 4 restantes juegan como supervivientes que
+                            intentan escapar de él para evitar ser capturados, torturados y asesinados.
+                        </p>
+                        <p class="precio blanco text-center fs-4"> $ <span>15.99</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="55">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/csgo.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">Counter Strike: Global Offensive</h4>
+                        <p class="card-text text-justify blanco ">
+                            Counter-Strike: Global Offensive (CS:GO) amplía el juego de acción por equipos del que fue
+                            pionero cuando salió hace más de 20 años.
+                        </p>
+                        <p class="precio blanco text-center fs-4"> $ <span>12.50</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="66">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/fifa23.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">FIFA 23</h4>
+                        <p class="card-text text-justify blanco">
+                            EA SPORTS™ FIFA 23 lleva el juego del mundo al campo, con la tecnología HyperMotion2 que
+                            ofrece
+                            una experiencia de juego aún más realista, tanto la FIFA World Cup™ masculina como la
+                            femenina
+                            que llegará al juego más adelante durante la temporada con actualizaciones tras el
+                            lanzamiento.
+                        </p>
+
+                        <p class="precio blanco text-center fs-4"> $ <span>59.99</span></p>
+
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="77">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/awayout.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">A Way Out</h4>
+                        <p class="card-text text-justify blanco">
+                            Una aventura exclusivamente cooperativa en la que te metes en la piel de uno de los dos
+                            reclusos
+                            protagonistas en su intrépida huida de la cárcel</p>
+                        <p class="precio blanco text-center fs-4"> $ <span>30.00</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="88">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/ittakestwo.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">It Takes Two</h4>
+                        <p class="card-text text-justify blanco">
+                            Descubre una conmovedora y emotiva historia sobre las dificultades de llevarse bien. Ayuda a
+                            Cody y May a superar sus diferencias.</p>
+                        <p class="precio blanco text-center fs-4"> $ <span>25.00</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="99">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/seaofthieves.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">Sea of Thieves</h4>
+                        <p class="card-text text-justify blanco">
+                            Sea of Thieves ofrece la experiencia de piratas definitiva, desde la navegación y el combate
+                            hasta la exploración y el saqueo: todo para disfrutar de la vida pirata y convertirte en
+                            leyenda. No hay funciones establecidas, tienes total libertad para enfrentarte al mundo y a
+                            los
+                            demás jugadores como desees.</p>
+                        <p class="precio blanco text-center fs-4"> $ <span>15.00</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="100">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/residentevil.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">Resident Evil Village</h4>
+                        <p class="card-text text-justify blanco">
+                            Ambientada unos años después de los escalofriantes sucesos del aclamado Resident Evil 7:
+                            Biohazard, esta flamante nueva historia arranca con Ethan Winters y su esposa Mia viviendo
+                            plácidamente en un nuevo lugar, lejos de pesadillas pasadas.</p>
+                        <p class="precio blanco text-center fs-4"> $ <span>40.00</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="110">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/anno.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">Anno 1800</h4>
+                        <p class="card-text text-justify blanco">
+                            Te damos la bienvenida al comienzo de la Era Industrial. El camino que elijas determinará el
+                            futuro de tu mundo. ¿Innovarás o explotarás al pueblo? ¿Conquistarás o liberarás a los
+                            oprimidos? El mundo te recordará, pero la forma en que lo haga solo depende de ti.</p>
+                        <p class="precio blanco text-center fs-4"> $ <span>45.00</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="120">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/cities.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">Cities: Skylines</h4>
+                        <p class="card-text text-justify blanco">
+                            Cities: Skylines presenta un enfoque moderno para el clásico simulador urbano. Introduce
+                            nuevos
+                            elementos a la mecánica de juego para plasmar la emoción y las complicaciones de mantener
+                            una
+                            ciudad de verdad, ampliando al mismo tiempo algunos de los temas ya conocidos de la
+                            experiencia
+                            del desarrollo urbanístico.</p>
+                        <p class="precio blanco text-center fs-4"> $ <span>15.00</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="130">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/callofduty.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">Call of Duty: Modern Warfare II</h4>
+                        <p class="card-text text-justify blanco">
+                            En Call of Duty®: Modern Warfare® II, los jugadores se verán inmersos en un conflicto a
+                            escala
+                            global sin precedentes que incluye el regreso de Operadores icónicos de la fuerza operativa
+                            141.
+                        </p>
+                        <p class="precio blanco text-center fs-4"> $ <span>70.00</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="140">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="card col-12 col-md-3 py-4" style="width: 16rem;">
+                    <img src="./assets/img/warhammer.jpg" class="card-img-top" id="card-img">
+
+                    <div class="card-body">
+                        <h4 class="card-title text-justify text-center blanco">Warhammer 40,000: Darktide</h4>
+                        <p class="card-text text-justify blanco">
+                            Recupera Tertium de las hordas de enemigos sanguinarios en este despiadado juego de disparos
+                            y
+                            acción salvaje. Warhammer 40,000: Darktide es la nueva experiencia cooperativa del
+                            galardonado
+                            equipo creador de la saga Vermintide.</p>
+                        <p class="precio blanco text-center fs-4"> $ <span>20.00</span></p>
+                        <a href="#" class="mx-4 btn btn-outline-light agregar-carrito" data-toggle="tooltip"
+                            data-placement="top" data-id="150">Agregar<i class="bi bi-cart-plus"></i></a>
+                    </div>
+
+                </div>
+            </div>
     </main>
 
+    <footer class="footer py-4">
 
-    <section id="container-msg">
-        <h2 id="msg">Hola! Bienvenido</h2>
-    </section>
+        <div class="container">
 
-    
+            <div class="row d-flex justify-content-center">
 
+                <div class="col-12 col-md-4 text-center ">
+                    <a href="https://wa.me/097333931" target="_blank" class="fs-4 negro"><i
+                            class="bi bi-whatsapp"></i> 097 333 931</a>
+                </div>
+
+                <div class="col-12 col-md-4 text-center">
+                    <a href="https://www.instagram.com" target="_blank" class="fs-4 negro"><i class="bi bi-instagram">
+                            @fpgames</i></a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="text-muted text-center">Copyright 2023. Dev. <a href="mailto:felipereiraforte@gmail.com"
+                target="_blank">felipereiraforte@gmail.com</a> Felipe Pereira Forte <a
+                href="https://github.com/fortepf/proyecto-javascript" target="_blank"><i
+                    class="bi bi-github negro"></i></a> 
+        </p>
+    </footer>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="index.js"></script>
 </body>
 
